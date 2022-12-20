@@ -19,10 +19,10 @@ public:
     }
 
 // Constructor with data 
-    athlete(int p, int s, char n[15]) {
-        power = p;
-        speed = s;
-        strcpy(name, n);
+    athlete(int power, int speed, char name[15]) {
+        power = power;
+        speed = speed;
+        strcpy(name, name);
     }
 
 // Delete data 
@@ -36,13 +36,13 @@ public:
 
 // Get and Set values
     int getPower() { return power; }
-    void setPower(int p) { power = p; }
+    void setPower(int power) { power = power; }
 
     int getSpeed() { return speed; }
-    void setSpeed(int s) { speed = s; }
+    void setSpeed(int speed) { speed = speed; }
 
     char* getName() { return name; }
-    void setName(char n[15]) { strcpy(name, n); }
+    void setName(char name[15]) { strcpy(name, name); }
 
 // Set phone number
     void setPhone() {
@@ -74,22 +74,36 @@ private:
 
 public:
 // Constructor soccer athlete whit values, and default values 
-    soccerAthlete(int nu, char t[10], char pt[10], int g) {
-        num = nu;
-        strcpy(team, t);
-        strcpy(position, pt);
-        goals = g;
+    soccerAthlete(
+        int num, 
+        char team[10], 
+        char position[10], 
+        int goals
+    ) {
+        num = num;
+        strcpy(team, team);
+        strcpy(position, position);
+        goals = goals;
     }
 // Constructor soccer athlete whit all values
-    soccerAthlete(int nu, char t[10], char pt[10], int g, int p, int s, char n[15], float ph) {
-        num = nu;
-        strcpy(team, t);
-        strcpy(position, pt);
-        goals = g;
-        power = p;
-        speed = s;
-        strcpy(name, n);
-        phone = ph;
+    soccerAthlete(
+            int num, 
+            char team[10], 
+            char position[10], 
+            int goals, 
+            int power, 
+            int speed, 
+            char name[15],
+            float phone
+        ) {
+        num = num;
+        strcpy(team, team);
+        strcpy(position, position);
+        goals = goals;
+        power = power;
+        speed = speed;
+        strcpy(name, name);
+        phone = phone;
     }
 
     void upSpeed() override {
@@ -129,14 +143,22 @@ public:
         silverMedal = 0;
         bronzeMedal = 0;
     }
-    swimmerAthlete(int gold,int silver,int bronze,char sty[15], int p, int s, char n[15]) {
+    swimmerAthlete(
+        int gold,
+        int silver,
+        int bronze,
+        char sty[15], 
+        int power, 
+        int speed, 
+        char name[15]
+    ) {
         goldMedal = gold;
         silverMedal = silver;
         bronzeMedal = bronze;
         strcpy(style, sty);
-        power = p;
-        speed = s;
-        strcpy(name, n);
+        power = power;
+        speed = speed;
+        strcpy(name, name);
     }
 
     void upSpeed() override {
@@ -164,11 +186,16 @@ public:
     cyclistAthlete() :athlete(){
         medalsCount = 0;
     }
-    cyclistAthlete(int mC, int p, int s, char n[15]) {
-        medalsCount = mC;
-        power = p;
-        speed = s;
-        strcpy(name, n);
+    cyclistAthlete(
+        int medalsCount, 
+        int power, 
+        int speed, 
+        char name[15]
+    ) {
+        medalsCount = medalsCount;
+        power = power;
+        speed = speed;
+        strcpy(name, name);
     }
 
     void upSpeed() override {
@@ -196,11 +223,16 @@ public:
     runnerAthlete() :athlete(){
         maxSpeed = 0;
     }
-    runnerAthlete(int ms, int p, int s, char n[15]) {
-        maxSpeed = ms;
-        power = p;
-        speed = s;
-        strcpy(name, n);
+    runnerAthlete(
+        int maxSpeed, 
+        int p, 
+        int s, 
+        char n[15]
+    ) {
+        maxSpeed = maxSpeed;
+        power = power;
+        speed = speed;
+        strcpy(name, name);
     }
 
     void upSpeed() override {
@@ -215,6 +247,25 @@ public:
         showAttributes();
         cout << "Athlete max speed: " << maxSpeed << endl << endl;
     }
+};
+
+class triathlete: 
+    public cyclistAthlete,
+    public runnerAthlete,
+    public swimmerAthlete {
+
+    int personalRecord;
+    char currentActivity[15] = "";
+
+public:
+    triathlete(int personalRecord) {
+        personalRecord = personalRecord;
+    }
+
+    void setActivity(char currentActivity[15]) {
+        strcpy(currentActivity, currentActivity);
+    }
+    char* getActivity() { return currentActivity; } 
 };
 
 void loadAthlete( athlete* ath) {
@@ -252,32 +303,37 @@ int main(){
     // Messi.showSoccerAtt();
 
     // Create Swimmer Athlete //
-    strcpy(name, "Felps");
-    strcpy(style, "Crol");
-    swimmerAthlete Felps(1, 2, 0, style, 100, 100, name);
-    Felps.upSpeed();
-    Felps.showSwimmerAtt();
+    // strcpy(name, "Felps");
+    // strcpy(style, "Crol");
+    // swimmerAthlete Felps(1, 2, 0, style, 100, 100, name);
+    // Felps.upSpeed();
+    // Felps.showSwimmerAtt();
 
     // Create Cyclist Athlete //
-    strcpy(name, "Ricardo");
-    cyclistAthlete Ricardo(10, 100, 100, name);
-    Ricardo.upSpeed();
-    Ricardo.showCyclistAtt();
+    // strcpy(name, "Ricardo");
+    // cyclistAthlete Ricardo(10, 100, 100, name);
+    // Ricardo.upSpeed();
+    // Ricardo.showCyclistAtt();
 
     // Create Runer Athlete //
-    strcpy(name, "Bolt");
-    runnerAthlete Bolt(200, 100, 100, name);
-    Bolt.upSpeed();
-    Bolt.showRunnerAtt();
+    // strcpy(name, "Bolt");
+    // runnerAthlete Bolt(200, 100, 100, name);
+    // Bolt.upSpeed();
+    // Bolt.showRunnerAtt();
 
     // Objetos en funcion power = 100//
-    loadAthlete(&Bolt);
-    Bolt.showAttributes();
+    // loadAthlete(&Bolt);
+    // Bolt.showAttributes();
 
-    loadAthlete(&Ricardo);
-    Ricardo.showAttributes();
+    // loadAthlete(&Ricardo);
+    // Ricardo.showAttributes();
 
-    loadAthlete(&Felps);
-    Felps.showAttributes();
+    // loadAthlete(&Felps);
+    // Felps.showAttributes();
+
+    //     Create Triathlete       //
+    strcpy(name, "Dante");
+    triathlete Dante(1);
+    Dante.showCyclistAtt();
 
 }
