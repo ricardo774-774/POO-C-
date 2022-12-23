@@ -258,8 +258,9 @@ class triathlete:
     char currentActivity[15] = "";
 
 public:
-    triathlete(int personalRecord) {
+    triathlete(int personalRecord, char currentActivity[15]) {
         personalRecord = personalRecord;
+        strcpy(currentActivity, currentActivity);;
     }
 
     void setActivity(char currentActivity[15]) {
@@ -278,6 +279,7 @@ int main(){
     char team[15];
     char position[15];
     char style[15];
+    char currentA[15];
 
     // Create Bolt Athlete //
     // strcpy(name, "Bolt");
@@ -333,7 +335,8 @@ int main(){
 
     //     Create Triathlete       //
     strcpy(name, "Dante");
-    triathlete Dante(1);
-    Dante.showCyclistAtt();
+    strcpy(currentA, "Run");
+    triathlete Dante(10, currentA);
+    Dante.showSwimmerAtt();
 
 }
